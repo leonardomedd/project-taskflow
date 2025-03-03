@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001
+      author: seu-nome
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: "bigint"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: "varchar(50)"
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: points
+                  type: "int"
+                  defaultValue: "0"
+        - createTable:
+            tableName: task
+            columns:
+              - column:
+                  name: id
+                  type: "bigint"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: title
+                  type: "varchar(100)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: "varchar(20)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: points
+                  type: "int"
+                  defaultValue: "0"
+              - column:
+                  name: user_id
+                  type: "bigint"
+                  constraints:
+                    foreignKeyName: "fk_task_user"
+                    references: "user(id)"
